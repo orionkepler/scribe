@@ -85,7 +85,6 @@ def train_model(args):
         kappa = np.zeros((args.batch_size, args.kmixtures, 1))
 
         for b in range(global_step % args.nbatches, args.nbatches):
-
             i = e * args.nbatches + b
             if global_step is not 0: i += 1; global_step = 0
 
@@ -111,7 +110,7 @@ def train_model(args):
             if i % 10 is 0:
                 logger.write(
                     "{}/{}, loss = {:.3f}, regloss = {:.5f}, valid_loss = {:.3f}, time = {:.3f}"
-                    .format(i, args.nepochs * args.nbatches, train_loss, running_average, valid_loss, end - start)
+                        .format(i, args.nepochs * args.nbatches, train_loss, running_average, valid_loss, end - start)
                 )
 
 

@@ -37,7 +37,7 @@ class Model:
         self.cell1 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
         self.cell2 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
 
-        if (self.train and self.dropout < 1):  # training mode
+        if self.train and self.dropout < 1:  # training mode
             self.cell0 = tf.contrib.rnn.DropoutWrapper(self.cell0, output_keep_prob=self.dropout)
             self.cell1 = tf.contrib.rnn.DropoutWrapper(self.cell1, output_keep_prob=self.dropout)
             self.cell2 = tf.contrib.rnn.DropoutWrapper(self.cell2, output_keep_prob=self.dropout)
