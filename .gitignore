@@ -1,1 +1,8 @@
+# Compliled Python Code
 *.pyc
+
+# PyCharm IDEA project folder
+.idea
+
+# Saved model
+saved
