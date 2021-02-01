@@ -1,0 +1,86 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 1 files
+Detected 13 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: model.py
+--------------------------------------------------------------------------------
+model.py:41:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+model.py:41:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:42:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+model.py:42:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:43:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+model.py:43:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:54:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:81:27: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+model.py:82:27: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+model.py:113:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:116:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+model.py:122:20: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+model.py:123:20: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+================================================================================
+Detailed log follows:
+
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'model.py'
+ outputting to 'model3.py'
+--------------------------------------------------------------------------------
+
+26:34: INFO: tf.truncated_normal_initializer requires manual check. Initializers no longer have the dtype argument in the constructor or partition_info argument in the __call__ method.
+The calls have been converted to compat.v1 for safety (even though they may already have been correct).
+26:34: INFO: Renamed 'tf.truncated_normal_initializer' to 'tf.compat.v1.truncated_normal_initializer'
+27:36: INFO: tf.truncated_normal_initializer requires manual check. Initializers no longer have the dtype argument in the constructor or partition_info argument in the __call__ method.
+The calls have been converted to compat.v1 for safety (even though they may already have been correct).
+27:36: INFO: Renamed 'tf.truncated_normal_initializer' to 'tf.compat.v1.truncated_normal_initializer'
+35:20: INFO: Renamed 'tf.contrib.rnn.LSTMCell' to 'tf.compat.v1.nn.rnn_cell.LSTMCell'
+41:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+41:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+42:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+42:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+43:25: WARNING: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib.rnn. (Manual edit required) tf.contrib.rnn.* has been deprecated, and widely used cells/functions will be moved to tensorflow/addons repository. Please check it there and file Github issues if necessary.
+43:25: ERROR: Using member tf.contrib.rnn.DropoutWrapper in deprecated module tf.contrib. tf.contrib.rnn.DropoutWrapper cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+45:26: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+46:27: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+54:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+74:18: INFO: Added keywords to args of function 'tf.reduce_sum'
+74:18: INFO: Renamed keyword argument for tf.reduce_sum from keep_dims to keepdims
+80:17: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+81:27: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+81:27: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+82:27: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+82:27: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+83:23: INFO: Renamed 'tf.nn.xw_plus_b' to 'tf.compat.v1.nn.xw_plus_b'
+91:26: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+92:24: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+113:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+116:40: ERROR: Using member tf.contrib.legacy_seq2seq.rnn_decoder in deprecated module tf.contrib. tf.contrib.legacy_seq2seq.rnn_decoder cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+121:13: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+122:20: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+122:20: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+123:20: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+123:20: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+126:17: INFO: Renamed 'tf.nn.xw_plus_b' to 'tf.compat.v1.nn.xw_plus_b'
+133:26: INFO: Renamed 'tf.div' to 'tf.compat.v1.div'
+134:26: INFO: Renamed 'tf.div' to 'tf.compat.v1.div'
+135:20: INFO: Renamed 'tf.div' to 'tf.compat.v1.div'
+137:29: INFO: Renamed 'tf.div' to 'tf.compat.v1.div'
+139:23: INFO: Renamed 'tf.div' to 'tf.compat.v1.div'
+146:20: INFO: Added keywords to args of function 'tf.reduce_sum'
+146:20: INFO: Renamed keyword argument for tf.reduce_sum from keep_dims to keepdims
+147:21: INFO: Renamed 'tf.log' to 'tf.math.log'
+151:21: INFO: Renamed 'tf.log' to 'tf.math.log'
+153:19: INFO: Added keywords to args of function 'tf.reduce_sum'
+188:16: INFO: Renamed 'tf.trainable_variables' to 'tf.compat.v1.trainable_variables'
+189:42: INFO: Added keywords to args of function 'tf.gradients'
+192:29: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+194:29: INFO: Renamed 'tf.train.RMSPropOptimizer' to 'tf.compat.v1.train.RMSPropOptimizer'
+201:20: INFO: Renamed 'tf.InteractiveSession' to 'tf.compat.v1.InteractiveSession'
+202:21: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+202:36: INFO: Renamed 'tf.global_variables' to 'tf.compat.v1.global_variables'
+203:22: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+219:25: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+219:40: INFO: Renamed 'tf.global_variables' to 'tf.compat.v1.global_variables'
+--------------------------------------------------------------------------------
+
