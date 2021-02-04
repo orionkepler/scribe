@@ -36,17 +36,20 @@ class Model:
         self.cell0 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
         self.cell1 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
         self.cell2 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
+        self.cell3 = cell_func(args.rnn_size, state_is_tuple=True, initializer=self.graves_initializer)
 
         if (self.train and self.dropout < 1):  # training mode
             self.cell0 = tf.contrib.rnn.DropoutWrapper(self.cell0, output_keep_prob=self.dropout)
             self.cell1 = tf.contrib.rnn.DropoutWrapper(self.cell1, output_keep_prob=self.dropout)
             self.cell2 = tf.contrib.rnn.DropoutWrapper(self.cell2, output_keep_prob=self.dropout)
+            self.cell3 = tf.contrib.rnn.DropoutWrapper(self.cell3, output_keep_prob=self.dropout)
 
         self.input_data = tf.placeholder(dtype=tf.float32, shape=[None, self.tsteps, 3])
         self.target_data = tf.placeholder(dtype=tf.float32, shape=[None, self.tsteps, 3])
         self.istate_cell0 = self.cell0.zero_state(batch_size=self.batch_size, dtype=tf.float32)
         self.istate_cell1 = self.cell1.zero_state(batch_size=self.batch_size, dtype=tf.float32)
         self.istate_cell2 = self.cell2.zero_state(batch_size=self.batch_size, dtype=tf.float32)
+        self.istate_cell3 = self.cell3.zero_state(batch_size=self.batch_size, dtype=tf.float32)
 
         # slice the input volume into separate vols for each tstep
         inputs = [tf.squeeze(input_, [1]) for input_ in tf.split(self.input_data, self.tsteps, 1)]
@@ -115,6 +118,8 @@ class Model:
 
         outs_cell2, self.fstate_cell2 = tf.contrib.legacy_seq2seq.rnn_decoder(outs_cell1, self.istate_cell2, self.cell2,
                                                                               loop_function=None, scope='cell2')
+        
+        outs_cell3, self.fstate_cell3 = tf.contrib.legacy_seq2seq.rnn_decoder(outs_cell2, self.istate_cell3, loop_function=None, scope='cell3')
 
         # ----- start building the Mixture Density Network on top (start with a dense layer to predict the MDN params)
         n_out = 1 + self.nmixtures * 6  # params = end_of_stroke + 6 parameters per Gaussian
@@ -122,8 +127,8 @@ class Model:
             mdn_w = tf.get_variable("output_w", [self.rnn_size, n_out], initializer=self.graves_initializer)
             mdn_b = tf.get_variable("output_b", [n_out], initializer=self.graves_initializer)
 
-        out_cell2 = tf.reshape(tf.concat(outs_cell2, 1), [-1, args.rnn_size])  # concat outputs for efficiency
-        output = tf.nn.xw_plus_b(out_cell2, mdn_w, mdn_b)  # data flows through dense nn
+        out_cell3 = tf.reshape(tf.concat(outs_cell3, 1), [-1, args.rnn_size])  # concat outputs for efficiency
+        output = tf.nn.xw_plus_b(out_cell3, mdn_w, mdn_b)  # data flows through dense nn
 
         # ----- build mixture density cap on top of second recurrent cell
         def gaussian2d(x1, x2, mu1, mu2, s1, s2, rho):
