@@ -119,7 +119,8 @@ class Model:
         outs_cell2, self.fstate_cell2 = tf.contrib.legacy_seq2seq.rnn_decoder(outs_cell1, self.istate_cell2, self.cell2,
                                                                               loop_function=None, scope='cell2')
         
-        outs_cell3, self.fstate_cell3 = tf.contrib.legacy_seq2seq.rnn_decoder(outs_cell2, self.istate_cell3, loop_function=None, scope='cell3')
+        outs_cell3, self.fstate_cell3 = tf.contrib.legacy_seq2seq.rnn_decoder(outs_cell2, self.istate_cell3, self.cell3,
+                                                                              loop_function=None, scope='cell3')
 
         # ----- start building the Mixture Density Network on top (start with a dense layer to predict the MDN params)
         n_out = 1 + self.nmixtures * 6  # params = end_of_stroke + 6 parameters per Gaussian
