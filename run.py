@@ -2,7 +2,7 @@ import tensorflow as tf
 import argparse
 import time
 
-from model import Model
+from model3 import Model
 from sample import *
 
 
@@ -56,7 +56,7 @@ def main():
 
 
 def train_model(args):
-    tf.compat.v1.disable_eager_execution()
+    #tf.compat.v1.disable_eager_execution()
     logger = Logger(args)  # make logging utility
     logger.write("\nTRAINING MODE...")
     logger.write("{}\n".format(args))
