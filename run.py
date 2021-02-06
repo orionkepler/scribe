@@ -2,7 +2,7 @@ import tensorflow as tf
 import argparse
 import time
 
-from model3 import Model
+from model import Model
 from sample import *
 
 
